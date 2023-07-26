@@ -2,6 +2,13 @@ import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
 
+
+def select_model():
+    model = st.sidebar.radio("Select model", ("Gpt-3.5", "Gpt-4"))
+    if model == "Gpt-3.5":
+        llm = ChatOpenAI(temperature=0.7, max_tokens=64)
+    elif model == "Gpt-4":
+
 def main():
     llm = ChatOpenAI(temperature=0.7, max_tokens=64)
     
@@ -10,6 +17,7 @@ def main():
         page_icon="(^^)",
     )
     st.header("Numko Chatbot")
+    st.sidebar.title("Options")
     
     # Chat setting
     if "messages" not in st.session_state:
